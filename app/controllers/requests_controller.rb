@@ -31,6 +31,7 @@ class RequestsController < ApplicationController
 
   def index
     @requests = Request.all
+    render 'index'
   end
 
     private
