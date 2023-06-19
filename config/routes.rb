@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
-  resources :users 
+  resources :users, defaults: { format: :json }
   resources :sessions, only: [:new, :create, :destroy]
   resources :requests 
   resources :departments 
 end
-
