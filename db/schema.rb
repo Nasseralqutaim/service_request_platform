@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_13_200418) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_19_195401) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -30,6 +30,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_13_200418) do
     t.datetime "expected_completion_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "department_id", null: false
+    t.index ["department_id"], name: "index_requests_on_department_id"
     t.index ["user_id"], name: "index_requests_on_user_id"
   end
 
@@ -55,6 +57,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_13_200418) do
   end
 
   add_foreign_key "departments", "users"
+  add_foreign_key "requests", "departments"
   add_foreign_key "requests", "users"
   add_foreign_key "tickets", "departments"
   add_foreign_key "tickets", "users"

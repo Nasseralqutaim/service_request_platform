@@ -34,6 +34,7 @@ class RequestsController < ApplicationController
     render 'index'
   end
 
+
     private
 
   def request_params
