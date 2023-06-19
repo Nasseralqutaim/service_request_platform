@@ -10,7 +10,8 @@ class RequestsController < ApplicationController
     else
       render 'new'
     end
-  end
+  end 
+  
 
   def edit
     @request = Request.find(params[:id])
