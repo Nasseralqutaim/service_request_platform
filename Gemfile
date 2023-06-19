@@ -14,6 +14,8 @@ gem "puma", "~> 5.0"
 
 gem 'faker' 
 
+gem 'binding_of_caller'
+
 
 
 

@@ -1,0 +1,14 @@
+@request.map do |r| 
+{
+    id: r.id,
+    description: r.description,
+    status: r.status,
+    urgency_level: r.urgency_level,
+    expected_completion_date: r.expected_completion_date,
+    created_at: r.created_at,
+    updated_at: r.updated_at,
+    user_id: r.user_id,
+    department_id: r.department_id  
+}
+end
+end

@@ -27,11 +27,17 @@ class RequestsController < ApplicationController
 
   def show
     @request = Request.find(params[:id])
+    respond_to do |format|
+      format.json {render json: @request}
+    end
   end
 
   def index
     @requests = Request.all
-    render 'index'
+    respond_to do |format|
+      format.json { render json: @requests.as_json(only: [:id, :description, :status, :urgency_level, :expected_completion_date, :created_at, :updated_at]) }
+    end
+
   end
 
 
