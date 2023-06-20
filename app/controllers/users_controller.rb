@@ -37,9 +37,9 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
-      # redirect to the user's show page
+      render json:@user, status: :ok
     else
-      render 'edit'
+      render json: @user.errors, status: :unprocessable_entity  
     end
   end
 
