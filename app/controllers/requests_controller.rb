@@ -4,10 +4,11 @@ class RequestsController < ApplicationController
   end
 
   def create
-    @request = Request.new(request_params)
+    @user = User.find(params[:user_id])
+    @request = @user.requests.new(request_params)
     if @request.save
       render json: @request, status: :created
-      else
+    else
       render json: @request.errors, status: :unprocessable_entity
     end
   end
@@ -29,12 +30,17 @@ class RequestsController < ApplicationController
   end
 
   def index
-    @requests = Request.all
+    if params[:user_id]
+      @user = User.find(params[:user_id])
+      @requests = @user.requests
+    else
+      @requests = Request.all
+    end
     respond_to do |format|
       format.json { render json: @requests.as_json(only: [:id, :description, :status, :urgency_level, :expected_completion_date, :created_at, :updated_at]) }
     end
-
   end
+
 
 
     private
