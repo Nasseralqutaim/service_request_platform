@@ -5,15 +5,16 @@ class SessionsController < ApplicationController
   def create
     user = User.find_by(email: params[:session][:email].downcase)
     if user && user.authenticate(params[:session][:password])
-      # log the user in and redirect to the user's show page
+      token = JWT.encode({ user_id: @user.id }, 'your_secret_key') # This line is for example purposes, your implementation may differ
+      render json: { jwt: token, user_id: @user.id }
     else
-      # create an error message
+      flash.now[:danger] = 'Invalid email/password combination' # Not quite right!
       render 'new'
     end
   end
 
   def destroy
-    # log out the current user
+    
     redirect_to root_url
   end
 end
